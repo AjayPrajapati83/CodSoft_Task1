@@ -9,13 +9,11 @@ class RuleBasedChatbot:
         self.root.geometry("500x600")
         self.root.resizable(False, False)
         
-        # Configure colors
         self.bg_color = "#f0f8ff"
         self.text_color = "#333333"
         self.bot_color = "#4169e1"
         self.user_color = "#2e8b57"
         
-        # Create chat display
         self.chat_display = scrolledtext.ScrolledText(
             root, wrap=tk.WORD, width=55, height=25,
             font=("Arial", 11), bg="white", fg=self.text_color
@@ -23,7 +21,6 @@ class RuleBasedChatbot:
         self.chat_display.pack(pady=10, padx=10)
         self.chat_display.config(state=tk.DISABLED)
         
-        # Create input frame
         input_frame = tk.Frame(root, bg=self.bg_color)
         input_frame.pack(pady=10)
         
@@ -40,10 +37,8 @@ class RuleBasedChatbot:
         )
         send_btn.pack(side=tk.LEFT)
         
-        # Initialize responses
         self.init_responses()
         
-        # Welcome message
         self.display_message("Bot", "Hello! I'm a rule-based chatbot. Ask me about Python, say hello, or ask for a joke!")
     
     def init_responses(self):
@@ -118,7 +113,6 @@ class RuleBasedChatbot:
         """Generate appropriate response based on rules"""
         response = None
         
-        # Check all response categories
         for category in self.responses.values():
             for pattern in category["patterns"]:
                 if pattern in user_input:
@@ -127,7 +121,6 @@ class RuleBasedChatbot:
             if response:
                 break
         
-        # Default response if no match
         if not response:
             response = "I'm not sure I understand. Could you rephrase that?"
         
